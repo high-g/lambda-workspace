@@ -1,6 +1,6 @@
 # lambda-workspace
 
-Phase 7: AWS Lambda + API Gateway の学習リポジトリ。
+AWS Lambda + API Gateway の学習リポジトリ
 
 ## 目標
 
