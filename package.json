@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --out"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.161",
+    "esbuild": "^0.28.0",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
     "tsx": "^4.21.0"
