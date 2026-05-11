@@ -7,9 +7,9 @@ Phase 7: AWS Lambda + API Gateway の学習リポジトリ（5/6〜5/8）。
 
 ## フェーズ目標
 
-- [ ] Lambda の基本概念を理解
-- [ ] Hono を Lambda ハンドラーとして動作させる
-- [ ] API Gateway と連携してエンドポイントを公開
+- [x] Lambda の基本概念を理解
+- [x] Hono を Lambda ハンドラーとして動作させる
+- [x] API Gateway と連携してエンドポイントを公開
 - [ ] ECS との比較 — コスト・コールドスタート・ユースケース
 
 ## 現在の状況
@@ -17,30 +17,22 @@ Phase 7: AWS Lambda + API Gateway の学習リポジトリ（5/6〜5/8）。
 ### 完了済み
 
 - リポジトリ初期化（`pnpm init`、`.gitignore` 追加）
-- 依存パッケージインストール（`hono`、`@types/aws-lambda`、`tsx`）
-- `src/` ディレクトリ作成
+- 依存パッケージインストール（`hono`、`@types/aws-lambda`、`tsx`、`esbuild`）
+- `src/index.ts` 作成（Hono × Lambda ハンドラー）
+- esbuild でバンドル（ESM形式、`dist/index.mjs`）
+- zip 化（`dist/function.zip`）
+- AWSコンソールでIAMロール作成（`lambda-hono-role`）
+- Lambda関数作成・zipアップロード（`hono-api`、Node.js 24.x）
+- API Gateway（HTTP API）作成・Lambda統合・エンドポイント公開
+- `curl https://wl23aup7d5.execute-api.ap-northeast-1.amazonaws.com/posts` で `{"posts":[]}` の疎通確認済み
 
 ### 次にやること
 
-`src/index.ts` を作成してLambdaハンドラーを実装する：
+Next.js から API Gateway エンドポイントを呼び出す：
 
-```ts
-import { Hono } from 'hono'
-import { handle } from 'hono/aws-lambda'
-
-const app = new Hono()
-
-app.get('/posts', (c) => c.json({ posts: [] }))
-
-export const handler = handle(app)
-```
-
-作成後の流れ：
-
-1. `esbuild` でバンドル（TypeScript → CommonJS）
-2. zip 化して Lambda にアップロード
-3. API Gateway と連携してエンドポイント公開
-4. ECS との比較整理（コスト・コールドスタート・ユースケース）
+1. `nextjs-workspace` の適当なページから `fetch` で `/posts` を呼び出す
+2. レスポンスを画面に表示して疎通確認
+3. ECS との比較整理（コスト・コールドスタート・ユースケース）
 
 ## 技術スタック
 
@@ -49,12 +41,13 @@ export const handler = handle(app)
 | `hono` | Lambda ハンドラー |
 | `@types/aws-lambda` | Lambda 型定義 |
 | `tsx` | TypeScript 実行（ローカル確認用） |
+| `esbuild` | バンドル（TS → ESM） |
 
 ## 進め方の方針
 
 - 基本的に人が手書きでコードを書いていくため、Claude Codeからのファイル編集はmdファイル以外は受け付けない
 - ローカルでHonoアプリを作り、Lambda対応に変換する流れで進める
-- デプロイはAWS CLIまたはSAM CLIを使用
+- デプロイはAWSコンソールから実施（学習目的）
 - ECSとの比較はコスト・コールドスタート・適切なユースケースの3軸で整理
 
 ## 前提知識
