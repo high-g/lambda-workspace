@@ -7,7 +7,7 @@ AWS Lambda + API Gateway の学習リポジトリ
 - [x] Lambda の基本概念を理解
 - [x] Hono を Lambda ハンドラーとして動作させる
 - [x] API Gateway と連携してエンドポイントを公開
-- [ ] ECS との比較（コスト・コールドスタート・ユースケース）
+- [-] ECS との比較（スキップ：体感での理解で十分と判断）
 
 ## スタック
 
@@ -27,6 +27,8 @@ lambda-workspace/
 ├── dist/
 │   ├── index.mjs       # esbuild バンドル済み
 │   └── function.zip    # Lambda アップロード用
+├── nextjs/             # Next.js アプリ
+├── pnpm-workspace.yaml
 ├── package.json
 ├── pnpm-lock.yaml
 └── .gitignore
@@ -50,7 +52,3 @@ zip -j dist/function.zip dist/index.mjs
 ```
 GET https://wl23aup7d5.execute-api.ap-northeast-1.amazonaws.com/posts
 ```
-
-## ロードマップ
-
-`/Users/tanifumiya/nextjs-workspace/ROADMAP.md` の Phase 7 を参照。

@@ -2,15 +2,14 @@
 
 ## 目的
 
-Phase 7: AWS Lambda + API Gateway の学習リポジトリ（5/6〜5/8）。  
-ロードマップ全体: `/Users/tanifumiya/nextjs-workspace/ROADMAP.md`
+Phase 7: AWS Lambda + API Gateway の学習リポジトリ（5/6〜5/10）。**完了済み。**  
 
 ## フェーズ目標
 
 - [x] Lambda の基本概念を理解
 - [x] Hono を Lambda ハンドラーとして動作させる
 - [x] API Gateway と連携してエンドポイントを公開
-- [ ] ECS との比較 — コスト・コールドスタート・ユースケース
+- [-] ECS との比較 — スキップ（体感での理解で十分と判断）
 
 ## 現在の状況
 
@@ -26,13 +25,12 @@ Phase 7: AWS Lambda + API Gateway の学習リポジトリ（5/6〜5/8）。
 - API Gateway（HTTP API）作成・Lambda統合・エンドポイント公開
 - `curl https://wl23aup7d5.execute-api.ap-northeast-1.amazonaws.com/posts` で `{"posts":[]}` の疎通確認済み
 
-### 次にやること
+- モノレポ化（`nextjs/` ディレクトリ + `pnpm-workspace.yaml`）
+- Next.js から API Gateway エンドポイントを呼び出し、`{"posts":[]}` の表示確認済み
 
-Next.js から API Gateway エンドポイントを呼び出す：
+### Phase 7 完了
 
-1. `nextjs-workspace` の適当なページから `fetch` で `/posts` を呼び出す
-2. レスポンスを画面に表示して疎通確認
-3. ECS との比較整理（コスト・コールドスタート・ユースケース）
+次フェーズ（Phase 8: React 19 の理解）へ進む。このリポジトリの役割はここで終了。
 
 ## 技術スタック
 
@@ -48,7 +46,7 @@ Next.js から API Gateway エンドポイントを呼び出す：
 - 基本的に人が手書きでコードを書いていくため、Claude Codeからのファイル編集はmdファイル以外は受け付けない
 - ローカルでHonoアプリを作り、Lambda対応に変換する流れで進める
 - デプロイはAWSコンソールから実施（学習目的）
-- ECSとの比較はコスト・コールドスタート・適切なユースケースの3軸で整理
+- ECSとの比較はスキップ（体感での理解を優先）
 
 ## 前提知識
 
